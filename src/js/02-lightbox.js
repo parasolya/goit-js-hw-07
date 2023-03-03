@@ -8,8 +8,8 @@ const listEl = document.querySelector(".gallery");
 const arrayImg = galleryItems
   .map(({ preview, original, description }) => {
     return `<li> 
-    <a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="${description}"  data-caption="${description}" title="${description}" captionDelay="250" />
+    <a class="gallery__item" href="${original}" data-caption="${description}"  captionDelay="250">
+  <img class="gallery__image" src="${preview}" alt="${description}" title="${description}"/>
 </a>
  </li>`;
   })
