@@ -24,26 +24,35 @@ listEl.insertAdjacentHTML("afterbegin", arrayImg);
 
 const handleChangerImg = (event) => {
   event.preventDefault();
-    if (!event.target.classList.contains('gallery__image')) {
+    if (event.target.nodeName !== 'IMG') {
       return;
   };
-  
+  const handleUseKey = (event) => {
+    if (event.key == 'Escape' && instance.visible()) {
+      instance.close()
+    };
+  }
+
   const instance = basicLightbox.create(`  
       <img
         class="modal__image"
         src="${event.target.dataset.source}"      
         alt="${event.target.alt}" 
-      />`
-  )
-  instance.show();
+      />`, 
+  {
+  onShow: (instance) =>
+  document.addEventListener('keydown', handleUseKey),
+  onClose: (instance) => {
+  document.removeEventListener('keydown', handleUseKey);
+  listEl.removeEventListener('click', handleChangerImg);
+  },
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key == 'Escape' && instance.visible()) {
-      instance.close()
-    }
-  });
+});
+
+instance.show((instance) => {
+  console.log('finished Show()', instance)
+});
 
 };
 
 listEl.addEventListener('click', handleChangerImg);
-
