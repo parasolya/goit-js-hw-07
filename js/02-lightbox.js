@@ -1,5 +1,4 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
 console.log(galleryItems);
 
@@ -17,6 +16,6 @@ const arrayImg = galleryItems
 listEl.insertAdjacentHTML("afterbegin", arrayImg);
 
 const gallery = new SimpleLightbox(".gallery a", {
-  captionsData: 'alt',
+  captionsData: "alt",
   captionDelay: 250,
 });
